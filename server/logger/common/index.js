@@ -1,13 +1,19 @@
 require('dotenv').config();
-const { createLogger, format, transports } = require('winston');
+const {createLogger, format, transports} = require('winston');
 require('winston-daily-rotate-file');
 const fs = require('fs');
 const path = require('path');
 
 function getLogger(directory) {
-  const logDir = path.resolve(process.env.NUTRIEASY_LOGDIR || process.env.NUTRIEASY_LOGDIR, directory);
+  const logFolder = process.env.nutrieasy_logdir;
+  if(!fs.existsSync(logFolder)){
+    fs.mkdirSync(logFolder)
+  }
+  const logDir = path.resolve(logFolder, directory);
 
-  if (!fs.existsSync(logDir)) fs.mkdirSync(logDir);
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+  }
 
   const logger = createLogger({
     format: format.combine(
