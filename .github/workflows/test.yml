@@ -1,4 +1,4 @@
-name: Test CI
+name: Deploy CI
  
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
