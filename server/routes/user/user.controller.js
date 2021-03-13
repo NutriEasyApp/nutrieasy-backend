@@ -7,7 +7,7 @@ class UserController {
 
   async healthCalculator(request, response) {
     try {
-      if(!user){
+      if(!request.body.id_user){
         return response.status(404).send({ error: 404, message: `User not provider`})
       }
 
