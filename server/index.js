@@ -52,8 +52,10 @@ const configSwagger = app => {
 
 const initRoutes = app => {
   const parameter = require('./routes/parameter');
-
+  const user = require('./routes/user')
   app.use('/nutrieasy/parameter', parameter());
+  app.use('/nutrieasy/user', user());
+
 }
 
 const startApp = app => {
