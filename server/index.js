@@ -20,6 +20,9 @@ const configureApp = app => {
 
   app.use(express.json());
 
+  app.use('/coverage-report', express.static('public/lcov-report/'));
+  app.use('/**', express.static('public/404.html'));
+
   // const authenticationMiddleware = require('./routes/middlewares/authentication.middleware');
   // const authorizationMiddleware = require('./routes/middlewares/authorization.middleware');
 
