@@ -12,8 +12,8 @@ function calculationValuesNutritional(user){
     const basalMetabolicRateMale = 66.5 + (5 * Number(user.height)) + (13.8 * Number(user.weight)) - (6.8 * Number(user.age))
     calorie = basalMetabolicRateMale + calorieOfbaseChores + calorieSpendForhour * user.physicalactivitytime
   }else{
-    const basalMetabolicRateFame = 655.1 + (1.8 * Number(user.height)) + (9.5 * Number(user.weight)) - (4.7 * Number(user.age))
-    calorie = basalMetabolicRateMale + calorieOfbaseChores + calorieSpendForhour * user.physicalactivitytime
+    const basalMetabolicRateFemale = 655.1 + (1.8 * Number(user.height)) + (9.5 * Number(user.weight)) - (4.7 * Number(user.age))
+    calorie = basalMetabolicRateFemale + calorieOfbaseChores + calorieSpendForhour * user.physicalactivitytime
   }
 
   if(user.wantaboutweight === 'lose'){
