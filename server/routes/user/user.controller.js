@@ -1,5 +1,5 @@
 const { UserDao } = require("../../dao/user.dao");
-const spendCalories = require('../../utils/calculationHealth')
+const calculationValuesNutritional = require('../../utils/calculationHealth')
 
 class UserController {
   constructor() {
@@ -18,7 +18,7 @@ class UserController {
         return response.status(404).send({ error: 404, message: `User does not exist`})
       }
 
-      return spendCalories(user)
+      return calculationValuesNutritional(user)
 
     }catch(err) {
       return response.status(404).send({ error: 404, message: err.message})

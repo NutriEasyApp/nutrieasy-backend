@@ -1,41 +1,61 @@
-function spendCalories(user){
+function calculationValuesNutritional(user){
   let calorie, protein, lipid, carbohydrate = null
 
+  const calorieOfbaseChores = 750
+  const calorieSpendForhour = 300
+  const baseCalorieToLoseOrGainWeight = 500
+  const caloriesPerGramsOfProtein = 4
+  const caloriesPerGramsOfLipid = 9
+  const caloriesPerGramsOfCarbohydrate = 4
+
   if(user.genre === 'male'){
-    calorie = 66.5 + (5 * Number(user.height)) + (13.8 * Number(user.weight)) - (6.8 * Number(user.age)) + 750 + 300 * user.lifestyle
+    const basalMetabolicRateMale = 66.5 + (5 * Number(user.height)) + (13.8 * Number(user.weight)) - (6.8 * Number(user.age))
+    calorie = basalMetabolicRateMale + calorieOfbaseChores + calorieSpendForhour * user.physicalactivitytime
   }else{
-    calorie = 655.1 + (1.8 * Number(user.height)) + (9.5 * Number(user.weight)) - (4.7 * Number(user.age)) + 750 + 300 * user.lifestyle
+    const basalMetabolicRateFame = 655.1 + (1.8 * Number(user.height)) + (9.5 * Number(user.weight)) - (4.7 * Number(user.age))
+    calorie = basalMetabolicRateMale + calorieOfbaseChores + calorieSpendForhour * user.physicalactivitytime
   }
 
-  if(user.want === 'lose'){
-    calorie -= 500
-  }else if(user.want === 'gain'){
-    calorie += 500
+  if(user.wantaboutweight === 'lose'){
+    calorie -= baseCalorieToLoseOrGainWeight
+  }else if(user.wantaboutweight === 'gain'){
+    calorie += baseCalorieToLoseOrGainWeight
   }
 
   if(user.bodytype === 'ectomorfo'){
-    protein = calorie * 0.25 / 4
-    lipid = calorie * 0.20 / 9
-    carbohydrate = calorie * 0.55 / 4
+    const proportionOfProtein = 0.25
+    const proportionOfLipid = 0.20
+    const proportionOfCarbohydrate = 0.55
+
+    protein = calorie * proportionOfProtein / caloriesPerGramsOfProtein
+    lipid = calorie * proportionOfLipid / caloriesPerGramsOfLipid
+    carbohydrate = calorie * proportionOfCarbohydrate / caloriesPerGramsOfCarbohydrate
   }else if(user.bodytype === 'mesomorfo'){
-    protein = calorie * 0.30/4
-    lipid = calorie * 0.30/9
-    carbohydrate = calorie * 0.40 / 4
+    const proportionOfProtein = 0.30
+    const proportionOfLipid = 0.30
+    const proportionOfCarbohydrate = 0.40
+
+    protein = calorie * proportionOfProtein / caloriesPerGramsOfProtein
+    lipid = calorie * proportionOfLipid / caloriesPerGramsOfLipid
+    carbohydrate = calorie * proportionOfCarbohydrate/ caloriesPerGramsOfCarbohydrate
   }else{
-    protein = calorie * 0.35 / 4
-    lipid = calorie * 0.40 / 9
-    carbohydrate = calorie * 0.25 / 4
+    const proportionOfProtein = 0.35
+    const proportionOfLipid = 0.40
+    const proportionOfCarbohydrate = 0.25
+
+    protein = calorie * proportionOfProtein / caloriesPerGramsOfProtein
+    lipid = calorie * proportionOfLipid / caloriesPerGramsOfLipid
+    carbohydrate = calorie * proportionOfCarbohydrate / caloriesPerGramsOfCarbohydrate
   }
 
-  const result = {
+  const ValuesNutritional = {
    'calorie':Math.round(calorie),
    'protein': Math.round(protein),
    'lipid': Math.round(lipid),
    'carbohydrate': Math.round(carbohydrate)
   }
 
-  console.log(result);
-  return result
+  return ValuesNutritional
 }
 
-module.exports = spendCalories
+module.exports = calculationValuesNutritional
