@@ -1,9 +1,9 @@
 const spendCalories = require('../../server/utils/calculationHealth');
 
-test('Should return the macro nutrients from the health calculation when genre is male, want lose and bodytype is ectomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  lose and bodytype is ectomorfo', () => {
   const user = {
     genre: 'male',
-    want: 'lose',
+    wantaboutweight : 'lose',
     bodytype: 'ectomorfo',
     height: '1.73',
     weight: '80.00',
@@ -19,10 +19,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is male, want lose and bodytype is mesomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  lose and bodytype is mesomorfo', () => {
   const user = {
     genre: 'male',
-    want: 'lose',
+    wantaboutweight : 'lose',
     bodytype: 'mesomorfo',
     height: '1.73',
     weight: '80.00',
@@ -38,10 +38,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is male, want lose and bodytype is endomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  lose and bodytype is endomorfo', () => {
   const user = {
     genre: 'male',
-    want: 'lose',
+    wantaboutweight : 'lose',
     bodytype: 'endomorfo',
     height: '1.73',
     weight: '80.00',
@@ -57,10 +57,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is male, want gain and bodytype is ectomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  gain and bodytype is ectomorfo', () => {
   const user = {
     genre: 'male',
-    want: 'gain',
+    wantaboutweight : 'gain',
     bodytype: 'ectomorfo',
     height: '1.73',
     weight: '80.00',
@@ -76,10 +76,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is male, want gain and bodytype is mesomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  gain and bodytype is mesomorfo', () => {
   const user = {
     genre: 'male',
-    want: 'gain',
+    wantaboutweight : 'gain',
     bodytype: 'mesomorfo',
     height: '1.73',
     weight: '80.00',
@@ -95,10 +95,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is male, want gain and bodytype is endomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  gain and bodytype is endomorfo', () => {
   const user = {
     genre: 'male',
-    want: 'gain',
+    wantaboutweight : 'gain',
     bodytype: 'endomorfo',
     height: '1.73',
     weight: '80.00',
@@ -115,10 +115,10 @@ test('Should return the macro nutrients from the health calculation when genre i
 })
 
 
-test('Should return the macro nutrients from the health calculation when genre is female, want lose and bodytype is ectomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  lose and bodytype is ectomorfo', () => {
   const user = {
     genre: 'female',
-    want: 'lose',
+    wantaboutweight : 'lose',
     bodytype: 'ectomorfo',
     height: '1.73',
     weight: '80.00',
@@ -134,10 +134,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is female, want lose and bodytype is mesomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  lose and bodytype is mesomorfo', () => {
   const user = {
     genre: 'female',
-    want: 'lose',
+    wantaboutweight : 'lose',
     bodytype: 'mesomorfo',
     height: '1.73',
     weight: '80.00',
@@ -153,10 +153,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is female, want lose and bodytype is endomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  lose and bodytype is endomorfo', () => {
   const user = {
     genre: 'female',
-    want: 'lose',
+    wantaboutweight : 'lose',
     bodytype: 'endomorfo',
     height: '1.73',
     weight: '80.00',
@@ -172,10 +172,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is female, want gain and bodytype is ectomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  gain and bodytype is ectomorfo', () => {
   const user = {
     genre: 'female',
-    want: 'gain',
+    wantaboutweight : 'gain',
     bodytype: 'ectomorfo',
     height: '1.73',
     weight: '80.00',
@@ -191,10 +191,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is female, want gain and bodytype is mesomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  gain and bodytype is mesomorfo', () => {
   const user = {
     genre: 'female',
-    want: 'gain',
+    wantaboutweight : 'gain',
     bodytype: 'mesomorfo',
     height: '1.73',
     weight: '80.00',
@@ -210,10 +210,10 @@ test('Should return the macro nutrients from the health calculation when genre i
   });
 })
 
-test('Should return the macro nutrients from the health calculation when genre is female, want gain and bodytype is endomorfo', () => {
+test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  gain and bodytype is endomorfo', () => {
   const user = {
     genre: 'female',
-    want: 'gain',
+    wantaboutweight : 'gain',
     bodytype: 'endomorfo',
     height: '1.73',
     weight: '80.00',
