@@ -23,7 +23,9 @@ const configResponseObject = (app) => {
 
 const configureApp = app => {
   const express = require('express');
+  const helmet = require("helmet");
   app.use(express.json());
+  app.use(helmet());
 
   const auth = require('./routes/auth');
   app.use('/nutrieasy/auth', auth());
@@ -34,7 +36,7 @@ const configureApp = app => {
   // app.use(authorizationMiddleware);
   // const authorizationMiddleware = require('./routes/middlewares/authorization.middleware');
 
-  app.use('/coverage-report', express.static('public/lcov-report/'));
+  app.use('/nutrieasy/coverage-report', express.static('public/lcov-report/'));
 
   app.use('*', (req, res, next) => {
     logger.info(`{ method: ${req.method}, url: ${req.url}, params: ${JSON.stringify(req.params)}, body: ${JSON.stringify(req.body)} }`);
