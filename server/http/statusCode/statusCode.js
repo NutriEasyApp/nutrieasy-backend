@@ -8,7 +8,7 @@ const StatusCode = {
   Forbidden_403: 403,
   Not_Found_404: 404,
 
-  Internal_Server_Error_500: 500
-}
+  Internal_Server_Error_500: 500,
+};
 
-module.exports = {StatusCode}
+module.exports = { StatusCode };

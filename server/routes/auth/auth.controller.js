@@ -1,8 +1,12 @@
 require('dotenv').config();
-const jwt = require('jsonwebtoken')
-const AppError = require("../../http/errors/AppError");
-const {UserDao} = require("../../dao/user.dao");
-const {StatusCode} = require('../../http/statusCode/statusCode')
+const AppError = require('../../http/errors/AppError');
+const { UserDao } = require('../../dao/user.dao');
+const { sign } = require('../../shared/provider/jwt');
+const { compare } = require('../../shared/provider/encryption');
+
+// function _isRequired(field) {
+//   throw new Error(`This ${field} is required`);
+// }
 
 class AuthController {
   constructor() {
@@ -11,45 +15,70 @@ class AuthController {
 
   async signup(request, response) {
     try {
-      const {email, username, password} = request.body;
-      if ([email, username, password].includes('') || [email, username, password].includes(null)) {
-        throw new AppError('Fields not provided', StatusCode.Bad_Request_400);
+      const { email, username, password } = request.body;
+      if (!email || !username || !password) {
+        throw new AppError({ message: 'Fields not provided', statusCode: 400 });
       }
 
-      const user = await this.dao.register({email, username, password})
+      const userExists = await this.dao.getUserByEmail({ email });
 
-      if (user) throw new AppError('User already registered', StatusCode.Bad_Request_400);
+      {
+        if (userExists) {
+          throw new AppError({
+            message: 'User already registered',
+            statusCode: 400,
+          });
+        }
+      }
 
-      const token = jwt.sign({user: user.id}, process.env.JWT_SECRET, {expiresIn: 86400});
+      const user = await this.dao.register({ email, username, password });
 
-      return response.status(StatusCode.Created_201).send({
-        status: StatusCode.Created_201,
-        message: 'User registered',
-        token
-      })
+      const token = await sign({ user: user.id });
+
+      return response.status(201).send({
+        token,
+      });
     } catch (err) {
-      return response.status(err.statusCode).send({message: err.message, error: err.statusCode})
+      return response.status(400).json(err);
     }
   }
 
   async login(request, response) {
     try {
-      const [hashType, hash] = request.headers.authorization.split(' ');
-      const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
+      const [, hash] = request.headers.authorization.split(' ');
+      const [email, password] = Buffer.from(hash, 'base64')
+        .toString()
+        .split(':');
 
-      const user = await this.dao.getUser({email, password});
+      const user = await this.dao.getUser({ email });
+
       if (!user) {
-        throw new AppError('Invalid user credentials', StatusCode.Not_Found_404);
+        throw new AppError({
+          message: 'Invalid user credentials',
+          statusCode: 401,
+        });
       }
 
-      const token = jwt.sign({user: user.id}, process.env.JWT_SECRET, {expiresIn: 86400});
+      const isValid = compare(password, user.password);
 
-      return response.status(StatusCode.OK_200).send({message: 'user authenticated', status: StatusCode.OK_200, token})
+      if (!isValid) {
+        throw new AppError({
+          message: 'Invalid user credentials',
+          statusCode: 401,
+        });
+      }
+
+      const token = await sign({ user: user.id });
+
+      return response.status(200).send({
+        token,
+      });
     } catch (err) {
-      return response.status(err.statusCode).send({error: err.statusCode, message: err.message})
+      return response
+        .status(err.statusCode)
+        .json({ message: err.message, statusCode: err.statusCode });
     }
   }
-
 }
 
-module.exports = {AuthController}
+module.exports = { AuthController };

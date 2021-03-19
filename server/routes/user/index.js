@@ -1,7 +1,7 @@
 const express = require('express');
-const { UserController } = require("./user.controller")
+const { UserController } = require('./user.controller');
 
-module.exports = (middlewares) => {
+module.exports = middlewares => {
   const controller = new UserController();
   const router = express.Router();
 
@@ -12,4 +12,4 @@ module.exports = (middlewares) => {
   router.get('/health', controller.healthCalculator.bind(controller));
 
   return router;
-}
+};

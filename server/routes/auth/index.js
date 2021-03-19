@@ -1,7 +1,7 @@
 const express = require('express');
-const {AuthController} = require("./auth.controller")
+const { AuthController } = require('./auth.controller');
 
-module.exports = (middlewares) => {
+module.exports = middlewares => {
   const controller = new AuthController();
   const router = express.Router();
 
@@ -11,7 +11,7 @@ module.exports = (middlewares) => {
 
   router.post('/signup', controller.signup.bind(controller));
 
-  router.get('/login', controller.login.bind(controller));
+  router.post('/login', controller.login.bind(controller));
 
   return router;
-}
+};

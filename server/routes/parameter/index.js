@@ -1,7 +1,7 @@
 const express = require('express');
-const { ParameterController } = require("./parameter.controller")
+const { ParameterController } = require('./parameter.controller');
 
-module.exports = (middlewares) => {
+module.exports = middlewares => {
   const controller = new ParameterController();
   const router = express.Router();
 
@@ -14,4 +14,4 @@ module.exports = (middlewares) => {
   router.post('/', controller.updateParameter.bind(controller));
 
   return router;
-}
+};

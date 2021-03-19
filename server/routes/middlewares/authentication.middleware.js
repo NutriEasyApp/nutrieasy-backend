@@ -1,25 +1,30 @@
 require('dotenv').config();
-const jwt = require('jsonwebtoken');
-const {UserDao} = require('../../dao/user.dao');
+const AppError = require('../../http/errors/AppError');
+const { verify } = require('../../shared/provider/jwt');
+const { UserDao } = require('../../dao/user.dao');
 
 const authenticationMiddleware = async (request, response, next) => {
-  if (!request.headers.authorization || request.headers.authorization.indexOf('Bearer ') === -1) {
-    return response.status(401).json({message: 'Missing Authorization Header'});
-  }
-  const [, token] = request.headers.authorization.split(' ');
   try {
-    const payload = await jwt.verify(token, process.env.JWT_SECRET);
+    if (!request.headers.authorization)
+      throw new AppError({ message: 'Invalid Authorization', statusCode: 401 });
+
+    const [, token] = request.headers.authorization.split(' ');
+
+    const payload = await verify(token);
+
     const userDao = new UserDao();
-    const user = await userDao.getUserById({id: payload.user});
+    const user = await userDao.getUserById({ id: payload.user });
 
     if (!user) {
-      response.status(401).send('Invalid Authorization');
+      throw new AppError({ message: 'Invalid Authorization', statusCode: 401 });
     }
 
     next();
-  } catch (e) {
-    response.status(401).send('Invalid Authorization');
+  } catch (err) {
+    return response
+      .status(401)
+      .json({ message: err.message, statusCode: err.statusCode });
   }
-}
+};
 
 module.exports = authenticationMiddleware;
