@@ -105,3 +105,5 @@ dist
 
 # Webstorm IDE files
 .idea/
+logs/
+public/
