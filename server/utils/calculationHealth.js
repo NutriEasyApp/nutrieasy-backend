@@ -1,81 +1,105 @@
-function calculationValuesNutritional(user) {
-  let calorie,
-    protein,
-    lipid,
-    carbohydrate = null;
+class CalculationNutrition {
+  constructor({
+    genre,
+    height,
+    weight,
+    age,
+    bodytype,
+    objective,
+    exercisetime,
+    calorieOfbaseChores = 750,
+    calorieSpendForhour = 300,
+    baseCalorie = 500
+  }) {
+    this.calorieOfbaseChores = calorieOfbaseChores;
+    this.calorieSpendForhour = calorieSpendForhour;
+    this.baseCalorie= baseCalorie
+    this.caloriesPerGramsOfProtein = 4;
+    this.caloriesPerGramsOfLipid = 9;
+    this.caloriesPerGramsOfCarbohydrate = 4;
+    this.genre = genre;
+    this.height = height;
+    this.weight = weight;
+    this.age = age;
+    this.bodytype = bodytype;
+    this.objective = objective;
+    this.exercisetime = exercisetime;
+  }
 
-  const calorieOfbaseChores = 750;
-  const calorieSpendForhour = 300;
-  const baseCalorieToLoseOrGainWeight = 500;
-  const caloriesPerGramsOfProtein = 4;
-  const caloriesPerGramsOfLipid = 9;
-  const caloriesPerGramsOfCarbohydrate = 4;
+  calculationBasal() {
+    if (this.genre === 'm')
+      return (
+        66.5 +
+        5 * Number(this.height) +
+        13.8 * Number(this.weight) -
+        6.8 * Number(this.age)
+      );
 
-  if (user.genre === 'male') {
-    const basalMetabolicRateMale =
-      66.5 +
-      5 * Number(user.height) +
-      13.8 * Number(user.weight) -
-      6.8 * Number(user.age);
-    calorie =
-      basalMetabolicRateMale +
-      calorieOfbaseChores +
-      calorieSpendForhour * user.physicalactivitytime;
-  } else {
-    const basalMetabolicRateFemale =
+    return (
       655.1 +
-      1.8 * Number(user.height) +
-      9.5 * Number(user.weight) -
-      4.7 * Number(user.age);
-    calorie =
-      basalMetabolicRateFemale +
-      calorieOfbaseChores +
-      calorieSpendForhour * user.physicalactivitytime;
+      1.8 * Number(this.height) +
+      9.5 * Number(this.weight) -
+      4.7 * Number(this.age));
   }
 
-  if (user.wantaboutweight === 'lose') {
-    calorie -= baseCalorieToLoseOrGainWeight;
-  } else if (user.wantaboutweight === 'gain') {
-    calorie += baseCalorieToLoseOrGainWeight;
+  calculationCalorie(basal) {
+    const usedCalorie =
+      basal +
+      this.calorieOfbaseChores +
+      this.calorieSpendForhour * this.exercisetime;
+
+    if (this.objective === 'gain'){
+      return Math.round(usedCalorie + this.baseCalorie);
+    }else if(this.objective === 'lose')
+      return Math.round(usedCalorie - this.baseCalorie);
+
+    return Math.round(usedCalorie);
   }
 
-  if (user.bodytype === 'ectomorfo') {
-    const proportionOfProtein = 0.25;
-    const proportionOfLipid = 0.2;
-    const proportionOfCarbohydrate = 0.55;
+  nutritionalProportion(calorie) {
+    let proportionOfProtein = 0.35;
+    let proportionOfLipid = 0.4;
+    let proportionOfCarbohydrate = 0.25;
 
-    protein = (calorie * proportionOfProtein) / caloriesPerGramsOfProtein;
-    lipid = (calorie * proportionOfLipid) / caloriesPerGramsOfLipid;
-    carbohydrate =
-      (calorie * proportionOfCarbohydrate) / caloriesPerGramsOfCarbohydrate;
-  } else if (user.bodytype === 'mesomorfo') {
-    const proportionOfProtein = 0.3;
-    const proportionOfLipid = 0.3;
-    const proportionOfCarbohydrate = 0.4;
+    if (this.bodytype === 'ectomorfo') {
+      proportionOfProtein = 0.25;
+      proportionOfLipid = 0.2;
+      proportionOfCarbohydrate = 0.55;
+    } else if (this.bodytype === 'mesomorfo') {
+      proportionOfProtein = 0.3;
+      proportionOfLipid = 0.3;
+      proportionOfCarbohydrate = 0.4;
+    }
 
-    protein = (calorie * proportionOfProtein) / caloriesPerGramsOfProtein;
-    lipid = (calorie * proportionOfLipid) / caloriesPerGramsOfLipid;
-    carbohydrate =
-      (calorie * proportionOfCarbohydrate) / caloriesPerGramsOfCarbohydrate;
-  } else {
-    const proportionOfProtein = 0.35;
-    const proportionOfLipid = 0.4;
-    const proportionOfCarbohydrate = 0.25;
-
-    protein = (calorie * proportionOfProtein) / caloriesPerGramsOfProtein;
-    lipid = (calorie * proportionOfLipid) / caloriesPerGramsOfLipid;
-    carbohydrate =
-      (calorie * proportionOfCarbohydrate) / caloriesPerGramsOfCarbohydrate;
+    return {
+      protein: Math.round(
+        (calorie * proportionOfProtein) / this.caloriesPerGramsOfProtein
+      ),
+      lipid: Math.round(
+        (calorie * proportionOfLipid) / this.caloriesPerGramsOfLipid
+      ),
+      carbohydrate: Math.round(
+        (calorie * proportionOfCarbohydrate) /
+          this.caloriesPerGramsOfCarbohydrate
+      ),
+    };
   }
 
-  const ValuesNutritional = {
-    calorie: Math.round(calorie),
-    protein: Math.round(protein),
-    lipid: Math.round(lipid),
-    carbohydrate: Math.round(carbohydrate),
-  };
+  needToDrink() {
+    return this.weight * 35;
+  }
 
-  return ValuesNutritional;
+  valuesNutritional() {
+    const water = this.needToDrink();
+    const basal = this.calculationBasal();
+    const calorie = this.calculationCalorie(basal);
+    const { protein, lipid, carbohydrate } = this.nutritionalProportion(
+      calorie
+    );
+
+    return { water:water.toString(), calories:calorie.toString(), protein:protein.toString(), lipids:lipid.toString(), carbohydrates:carbohydrate.toString() };
+  }
 }
 
-module.exports = calculationValuesNutritional;
+
+module.exports = CalculationNutrition;
