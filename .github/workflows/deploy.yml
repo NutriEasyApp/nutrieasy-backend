@@ -1,5 +1,5 @@
 name: Deploy CI
- 
+
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
     - development
   pull_request:
     branches:
-      - main 
+      - main
 
   workflow_dispatch:
 
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code 
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Setup Node
@@ -26,9 +26,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-      
-#       - name: Execute Tests
-#         run: npm run test
+
+       - name: Execute Tests
+         run: npm run test
 
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
