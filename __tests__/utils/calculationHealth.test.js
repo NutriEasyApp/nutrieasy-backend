@@ -211,7 +211,7 @@ test('Should return the macro nutrients from the health calculation when genre i
     lifestyle: '',
   };
   expect(spendCalories(user)).toEqual({
-    calorie: expect.any(String),
+    calorie: expect.any(Number),
     carbohydrate: expect.any(Number),
     lipid: expect.any(Number),
     protein: expect.any(Number),

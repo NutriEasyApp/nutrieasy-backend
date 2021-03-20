@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "jest --coverage",
+    "start:dev": "nodemon app.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "format": "prettier \"**/*.+(ts|js|tsx)\" --write"
   },
   "repository": {
