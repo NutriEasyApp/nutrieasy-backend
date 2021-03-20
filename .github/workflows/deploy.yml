@@ -3,8 +3,8 @@ name: Deploy CI
 on:
   push:
     branches:
-    - main
-    - development
+      - main
+      - development
   pull_request:
     branches:
       - main
@@ -27,8 +27,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-       - name: Execute Tests
-         run: npm run test
+      - name: Execute Tests
+        run: npm run test
 
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
