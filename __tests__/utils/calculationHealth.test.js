@@ -1,219 +1,435 @@
-const faker = require('faker');
-const spendCalories = require('../../server/utils/calculationHealth');
+const CalculationNutrition = require('../../server/utils/calculationHealth');
 
-describe('test', () => {
-  test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  lose and bodytype is ectomorfo', () => {
+describe('Calculation Health', () => {
+  it("Should return the macro nutrients when {genre:'m', bodytype:'ECTOMORPH', objective:'GAIN' }", () => {
     const user = {
-      genre: 'male',
-      wantaboutweight: 'lose',
-      bodytype: 'ectomorfo',
-      height: '1.73',
-      weight: '80.00',
+      genre: 'm',
+      height: '175',
+      weight: '80',
       age: '21',
-      lifestyle: '',
+      bodytype: 'ECTOMORPH',
+      objective: 'GAIN',
+      exercisetime: '2.00',
     };
-    expect(spendCalories(user)).toEqual({
-      calorie: expect.any(Number),
-      carbohydrate: expect.any(Number),
-      lipid: expect.any(Number),
-      protein: expect.any(Number),
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '203',
+      lipids: '72',
+      carbohydrates: '447',
     });
   });
-});
-test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  lose and bodytype is mesomorfo', () => {
-  const user = {
-    genre: 'male',
-    wantaboutweight: 'lose',
-    bodytype: 'mesomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
-  });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  lose and bodytype is endomorfo', () => {
-  const user = {
-    genre: 'male',
-    wantaboutweight: 'lose',
-    bodytype: 'endomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
-  });
-});
+  it("Should return the macro nutrients when {genre:'m', bodytype:'ECTOMORPH', objective:'LOSE' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ECTOMORPH',
+      objective: 'LOSE',
+      exercisetime: '2.00',
+    };
 
-test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  gain and bodytype is ectomorfo', () => {
-  const user = {
-    genre: 'male',
-    wantaboutweight: 'gain',
-    bodytype: 'ectomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
-  });
-});
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
 
-test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  gain and bodytype is mesomorfo', () => {
-  const user = {
-    genre: 'male',
-    wantaboutweight: 'gain',
-    bodytype: 'mesomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '203',
+      lipids: '72',
+      carbohydrates: '447',
+    });
   });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is male, wantaboutweight  gain and bodytype is endomorfo', () => {
-  const user = {
-    genre: 'male',
-    wantaboutweight: 'gain',
-    bodytype: 'endomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+  it("Should return the macro nutrients when {genre:'m', bodytype:'ECTOMORPH', objective:'KEEP' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ECTOMORPH',
+      objective: 'KEEP',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '203',
+      lipids: '72',
+      carbohydrates: '447',
+    });
   });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  lose and bodytype is ectomorfo', () => {
-  const user = {
-    genre: 'female',
-    wantaboutweight: 'lose',
-    bodytype: 'ectomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+  it("Should return the macro nutrients when {genre:'m', bodytype:'MESOMORPH', objective:'GAIN' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'MESOMORPH',
+      objective: 'GAIN',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '285',
+      lipids: '145',
+      carbohydrates: '203',
+    });
   });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  lose and bodytype is mesomorfo', () => {
-  const user = {
-    genre: 'female',
-    wantaboutweight: 'lose',
-    bodytype: 'mesomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+  it("Should return the macro nutrients when {genre:'m', bodytype:'MESOMORPH', objective:'LOSE' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'MESOMORPH',
+      objective: 'LOSE',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '285',
+      lipids: '145',
+      carbohydrates: '203',
+    });
   });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  lose and bodytype is endomorfo', () => {
-  const user = {
-    genre: 'female',
-    wantaboutweight: 'lose',
-    bodytype: 'endomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+  it("Should return the macro nutrients when {genre:'m', bodytype:'MESOMORPH', objective:'KEEP' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'MESOMORPH',
+      objective: 'KEEP',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '285',
+      lipids: '145',
+      carbohydrates: '203',
+    });
   });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  gain and bodytype is ectomorfo', () => {
-  const user = {
-    genre: 'female',
-    wantaboutweight: 'gain',
-    bodytype: 'ectomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+  it("Should return the macro nutrients when {genre:'m', bodytype:'ENDOMORPH', objective:'GAIN' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ENDOMORPH',
+      objective: 'GAIN',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '285',
+      lipids: '145',
+      carbohydrates: '203',
+    });
   });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  gain and bodytype is mesomorfo', () => {
-  const user = {
-    genre: 'female',
-    wantaboutweight: 'gain',
-    bodytype: 'mesomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+  it("Should return the macro nutrients when {genre:'m', bodytype:'ENDOMORPH', objective:'LOSE' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ENDOMORPH',
+      objective: 'LOSE',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '285',
+      lipids: '145',
+      carbohydrates: '203',
+    });
   });
-});
 
-test('Should return the macro nutrients from the health calculation when genre is female, wantaboutweight  gain and bodytype is endomorfo', () => {
-  const user = {
-    genre: 'female',
-    wantaboutweight: 'gain',
-    bodytype: 'endomorfo',
-    height: '1.73',
-    weight: '80.00',
-    age: '21',
-    lifestyle: '',
-  };
-  expect(spendCalories(user)).toEqual({
-    calorie: expect.any(Number),
-    carbohydrate: expect.any(Number),
-    lipid: expect.any(Number),
-    protein: expect.any(Number),
+  it("Should return the macro nutrients when {genre:'m', bodytype:'ENDOMORPH', objective:'KEEP' }", () => {
+    const user = {
+      genre: 'm',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ENDOMORPH',
+      objective: 'KEEP',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '3253',
+      protein: '285',
+      lipids: '145',
+      carbohydrates: '203',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'ECTOMORPH', objective:'GAIN' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ECTOMORPH',
+      objective: 'GAIN',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '186',
+      lipids: '66',
+      carbohydrates: '410',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'ECTOMORPH', objective:'LOSE' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ECTOMORPH',
+      objective: 'LOSE',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '186',
+      lipids: '66',
+      carbohydrates: '410',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'ECTOMORPH', objective:'KEEP' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ECTOMORPH',
+      objective: 'KEEP',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '186',
+      lipids: '66',
+      carbohydrates: '410',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'MESOMORPH', objective:'GAIN' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'MESOMORPH',
+      objective: 'GAIN',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '261',
+      lipids: '132',
+      carbohydrates: '186',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'MESOMORPH', objective:'LOSE' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'MESOMORPH',
+      objective: 'LOSE',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '261',
+      lipids: '132',
+      carbohydrates: '186',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'MESOMORPH', objective:'KEEP' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'MESOMORPH',
+      objective: 'KEEP',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '261',
+      lipids: '132',
+      carbohydrates: '186',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'ENDOMORPH', objective:'GAIN' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ENDOMORPH',
+      objective: 'GAIN',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '261',
+      lipids: '132',
+      carbohydrates: '186',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'ENDOMORPH', objective:'LOSE' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ENDOMORPH',
+      objective: 'LOSE',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '261',
+      lipids: '132',
+      carbohydrates: '186',
+    });
+  });
+
+  it("Should return the macro nutrients when {genre:'f', bodytype:'ENDOMORPH', objective:'KEEP' }", () => {
+    const user = {
+      genre: 'f',
+      height: '175',
+      weight: '80',
+      age: '21',
+      bodytype: 'ENDOMORPH',
+      objective: 'KEEP',
+      exercisetime: '2.00',
+    };
+
+    const proposedDiet = new CalculationNutrition({
+      ...user,
+    }).valuesNutritional();
+
+    expect(proposedDiet).toEqual({
+      water: '2800',
+      calories: '2981',
+      protein: '261',
+      lipids: '132',
+      carbohydrates: '186',
+    });
   });
 });

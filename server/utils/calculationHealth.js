@@ -9,11 +9,11 @@ class CalculationNutrition {
     exercisetime,
     calorieOfbaseChores = 750,
     calorieSpendForhour = 300,
-    baseCalorie = 500
+    baseCalorie = 500,
   }) {
     this.calorieOfbaseChores = calorieOfbaseChores;
     this.calorieSpendForhour = calorieSpendForhour;
-    this.baseCalorie= baseCalorie
+    this.baseCalorie = baseCalorie;
     this.caloriesPerGramsOfProtein = 4;
     this.caloriesPerGramsOfLipid = 9;
     this.caloriesPerGramsOfCarbohydrate = 4;
@@ -39,7 +39,8 @@ class CalculationNutrition {
       655.1 +
       1.8 * Number(this.height) +
       9.5 * Number(this.weight) -
-      4.7 * Number(this.age));
+      4.7 * Number(this.age)
+    );
   }
 
   calculationCalorie(basal) {
@@ -48,9 +49,9 @@ class CalculationNutrition {
       this.calorieOfbaseChores +
       this.calorieSpendForhour * this.exercisetime;
 
-    if (this.objective === 'gain'){
+    if (this.objective === 'gain') {
       return Math.round(usedCalorie + this.baseCalorie);
-    }else if(this.objective === 'lose')
+    } else if (this.objective === 'lose')
       return Math.round(usedCalorie - this.baseCalorie);
 
     return Math.round(usedCalorie);
@@ -61,7 +62,7 @@ class CalculationNutrition {
     let proportionOfLipid = 0.4;
     let proportionOfCarbohydrate = 0.25;
 
-    if (this.bodytype === 'ectomorfo') {
+    if (this.bodytype === 'ECTOMORPH') {
       proportionOfProtein = 0.25;
       proportionOfLipid = 0.2;
       proportionOfCarbohydrate = 0.55;
@@ -97,9 +98,14 @@ class CalculationNutrition {
       calorie
     );
 
-    return { water:water.toString(), calories:calorie.toString(), protein:protein.toString(), lipids:lipid.toString(), carbohydrates:carbohydrate.toString() };
+    return {
+      water: water.toString(),
+      calories: calorie.toString(),
+      protein: protein.toString(),
+      lipids: lipid.toString(),
+      carbohydrates: carbohydrate.toString(),
+    };
   }
 }
-
 
 module.exports = CalculationNutrition;
