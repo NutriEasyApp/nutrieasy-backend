@@ -10,7 +10,7 @@ module.exports = middlewares => {
   }
 
   router.post('/', controller.createHealth.bind(controller));
-  //router.get('/', controller.healthCalculator.bind(controller));
+  router.get('/:id', controller.getHealth.bind(controller));
   //router.put('/:id', controller.healthCalculator.bind(controller));
 
   return router;
