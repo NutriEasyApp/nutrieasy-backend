@@ -32,7 +32,7 @@ class DietController {
         exercisetime
       }).valuesNutritional();
 
-      await this.daoDiet.createDiet({
+      const diet = await this.daoDiet.createDiet({
         id_user,
         calories,
         carbohydrates,
@@ -40,8 +40,9 @@ class DietController {
         lipids,
         water});
 
+        return diet;
+
     } catch (err) {
-      console.log(err);
       throw new AppError({ error: 404, message: err.message });
     }
   }
@@ -49,6 +50,8 @@ class DietController {
   async getDiet(request,response){
 
     const diet = await this.daoDiet.getDiet(request.params.id)
+
+    if(!diet) return response.status(404).json({error:404, message:'The diet was not found'})
 
     return response.status(200).json(diet)
 
