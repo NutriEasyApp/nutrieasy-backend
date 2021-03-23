@@ -37,7 +37,7 @@ const configureApp = app => {
   app.use('/nutrieasy/auth', auth());
 
   const authenticationMiddleware = require('./routes/middlewares/authentication.middleware');
-  app.use(authenticationMiddleware);
+  // app.use(authenticationMiddleware);
 
   // app.use(authorizationMiddleware);
   // const authorizationMiddleware = require('./routes/middlewares/authorization.middleware');
@@ -78,10 +78,14 @@ const configSwagger = app => {};
 
 const initRoutes = app => {
   const parameter = require('./routes/parameter');
-  const user = require('./routes/user');
+  const diet = require('./routes/diet');
+  const health = require('./routes/health');
+  // const user = require('./routes/user');
 
   app.use('/nutrieasy/parameter', parameter());
-  app.use('/nutrieasy/user', user());
+  app.use('/nutrieasy/diet', diet());
+  app.use('/nutrieasy/health', health());
+  // app.use('/nutrieasy/user', user());
 
   const express = require('express');
   app.use('/**', express.static('public/404.html'));
