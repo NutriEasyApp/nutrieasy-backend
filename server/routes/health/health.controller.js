@@ -20,14 +20,14 @@ class HealthController {
         exercisetime,
       } = request.body;
 
-      if(id_user &&
+      if(!(id_user &&
         genre &&
         height &&
         weight &&
         birthdate &&
         bodytype &&
         objective &&
-        exercisetime){
+        exercisetime)){
           return response.status(404).json({error:404, message:'Input data was not found'})
         }
 
@@ -42,7 +42,7 @@ class HealthController {
         exercisetime,
       })
 
-      if(responseHealth) return response.status(404).json({error:404, message:'Erro in saving health data'})
+      if(!responseHealth) return response.status(404).json({error:404, message:'Erro in saving health data'})
 
       const diet = await this.dietController.createDiet({
         id_user,
@@ -54,7 +54,7 @@ class HealthController {
         objective,
         exercisetime,})
 
-        if(diet) return response.status(404).json({error:404, message:'Erro in saving diet data'})
+        if(!diet) return response.status(404).json({error:404, message:'Erro in saving diet data'})
 
       return response.status(201).json({responseHealth,diet})
     } catch (err) {
