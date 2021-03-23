@@ -14,7 +14,14 @@ class DietDao {
     });
   }
 
-  async createDiet({id_user, calories, carbohydrates, protein, lipids, water}) {
+  async createDiet({
+    id_user,
+    calories,
+    carbohydrates,
+    protein,
+    lipids,
+    water,
+  }) {
     return this.knex.getConnection(async conn => {
       const result = await conn('proposed_diet').insert({
         id_user,
@@ -23,7 +30,7 @@ class DietDao {
         protein,
         lipids,
         water,
-        meals: 'null'
+        meals: 'null',
       });
       conn.destroy();
       return result;

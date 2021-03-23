@@ -42,25 +42,25 @@ class DietController {
         carbohydrates,
         protein,
         lipids,
-        water});
+        water,
+      });
 
-        return diet;
-
+      return diet;
     } catch (err) {
       throw new AppError({ error: 404, message: err.message });
     }
   }
 
-  async getDiet(request,response){
+  async getDiet(request, response) {
+    const diet = await this.daoDiet.getDiet(request.params.id);
 
-    const diet = await this.daoDiet.getDiet(request.params.id)
+    if (!diet)
+      return response
+        .status(404)
+        .json({ error: 404, message: 'The diet was not found' });
 
-    if(!diet) return response.status(404).json({error:404, message:'The diet was not found'})
-
-    return response.status(200).json(diet)
-
+    return response.status(200).json(diet);
   }
 }
-
 
 module.exports = { DietController };

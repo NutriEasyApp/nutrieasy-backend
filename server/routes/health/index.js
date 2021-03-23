@@ -1,5 +1,5 @@
 const express = require('express');
-const {HealthController} = require('./health.controller');
+const { HealthController } = require('./health.controller');
 
 module.exports = middlewares => {
   const controller = new HealthController();

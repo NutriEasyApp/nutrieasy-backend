@@ -9,9 +9,7 @@ module.exports = middlewares => {
     middlewares.forEach(middleware => router.use(middleware));
   }
 
-
   router.get('/:id', controller.getDiet.bind(controller));
-
 
   return router;
 };
