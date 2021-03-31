@@ -13,7 +13,6 @@ class UserDao {
           username,
           password: hash(password),
           email,
-          birthdate: 'null',
           last_login: new Date(),
         },
         ['id']
@@ -59,6 +58,18 @@ class UserDao {
         .where({
           id,
         })
+        .first();
+      conn.destroy();
+      return data;
+    });
+  }
+
+  async getUser({ id }) {
+    return this.knex.getConnection(async conn => {
+      const data = await conn
+        .select('username', 'email')
+        .from('users')
+        .where({ id })
         .first();
       conn.destroy();
       return data;
