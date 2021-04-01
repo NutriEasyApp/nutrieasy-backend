@@ -49,9 +49,9 @@ class CalculationNutrition {
       this.calorieOfbaseChores +
       this.calorieSpendForhour * this.exercisetime;
 
-    if (this.objective === 'gain') {
+    if (this.objective === 'GAIN') {
       return Math.round(usedCalorie + this.baseCalorie);
-    } else if (this.objective === 'lose')
+    } else if (this.objective === 'LOSE')
       return Math.round(usedCalorie - this.baseCalorie);
 
     return Math.round(usedCalorie);

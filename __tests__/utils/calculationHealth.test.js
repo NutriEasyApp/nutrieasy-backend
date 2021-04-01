@@ -18,10 +18,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '3253',
-      protein: '203',
-      lipids: '72',
-      carbohydrates: '447',
+      calories: '3753',
+      carbohydrates: '516',
+      lipids: '83',
+      protein: '235',
     });
   });
 
@@ -42,10 +42,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '3253',
-      protein: '203',
-      lipids: '72',
-      carbohydrates: '447',
+      calories: '2753',
+      carbohydrates: '379',
+      lipids: '61',
+      protein: '172',
     });
   });
 
@@ -90,10 +90,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '3253',
-      carbohydrates: '325',
-      lipids: '108',
-      protein: '244',
+      calories: '3753',
+      carbohydrates: '375',
+      lipids: '125',
+      protein: '281',
     });
   });
 
@@ -114,10 +114,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '3253',
-      carbohydrates: '325',
-      lipids: '108',
-      protein: '244',
+      calories: '2753',
+      carbohydrates: '275',
+      lipids: '92',
+      protein: '206',
     });
   });
 
@@ -162,10 +162,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '3253',
-      protein: '285',
-      lipids: '145',
-      carbohydrates: '203',
+      calories: '3753',
+      carbohydrates: '235',
+      lipids: '167',
+      protein: '328',
     });
   });
 
@@ -186,10 +186,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '3253',
-      protein: '285',
-      lipids: '145',
-      carbohydrates: '203',
+      calories: '2753',
+      carbohydrates: '172',
+      lipids: '122',
+      protein: '241',
     });
   });
 
@@ -234,10 +234,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '2981',
-      protein: '186',
-      lipids: '66',
-      carbohydrates: '410',
+      calories: '3481',
+      carbohydrates: '479',
+      lipids: '77',
+      protein: '218',
     });
   });
 
@@ -258,10 +258,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '2981',
-      protein: '186',
-      lipids: '66',
-      carbohydrates: '410',
+      calories: '2481',
+      carbohydrates: '341',
+      lipids: '55',
+      protein: '155',
     });
   });
 
@@ -306,10 +306,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '2981',
-      carbohydrates: '298',
-      lipids: '99',
-      protein: '224',
+      calories: '3481',
+      carbohydrates: '348',
+      lipids: '116',
+      protein: '261',
     });
   });
 
@@ -330,10 +330,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '2981',
-      carbohydrates: '298',
-      lipids: '99',
-      protein: '224',
+      calories: '2481',
+      carbohydrates: '248',
+      lipids: '83',
+      protein: '186',
     });
   });
 
@@ -378,10 +378,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '2981',
-      protein: '261',
-      lipids: '132',
-      carbohydrates: '186',
+      calories: '3481',
+      carbohydrates: '218',
+      lipids: '155',
+      protein: '305',
     });
   });
 
@@ -402,10 +402,10 @@ describe('Calculation Health', () => {
 
     expect(proposedDiet).toEqual({
       water: '2800',
-      calories: '2981',
-      protein: '261',
-      lipids: '132',
-      carbohydrates: '186',
+      calories: '2481',
+      carbohydrates: '155',
+      lipids: '110',
+      protein: '217',
     });
   });
 
