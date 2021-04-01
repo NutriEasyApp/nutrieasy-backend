@@ -66,7 +66,7 @@ class CalculationNutrition {
       proportionOfProtein = 0.25;
       proportionOfLipid = 0.2;
       proportionOfCarbohydrate = 0.55;
-    } else if (this.bodytype === 'mesomorfo') {
+    } else if (this.bodytype === 'MESOMORPH') {
       proportionOfProtein = 0.3;
       proportionOfLipid = 0.3;
       proportionOfCarbohydrate = 0.4;
