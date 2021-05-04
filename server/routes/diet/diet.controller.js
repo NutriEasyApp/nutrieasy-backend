@@ -66,11 +66,15 @@ class DietController {
       };
 
       if (!diet) {
-        return response.status(404).json({ error: 404, message: 'The diet was not found' });
+        return response
+          .status(404)
+          .json({ error: 404, message: 'The diet was not found' });
       }
       return response.status(200).json({ diet, dietPerMeal });
-    } catch(err) {
-      return response.status(404).json({ error: 404, message: 'The diet was not found' });
+    } catch (err) {
+      return response
+        .status(404)
+        .json({ error: 404, message: 'The diet was not found' });
     }
   }
 }

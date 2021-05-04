@@ -43,7 +43,7 @@ class AuthController {
         .toString()
         .split(':');
 
-      const user = await this.dao.getUser({email});
+      const user = await this.dao.getUser({ email });
 
       if (!user) {
         throw new AppError({
@@ -67,8 +67,7 @@ class AuthController {
         token,
       });
     } catch (err) {
-      return response.status(401)
-        .json({ message: err.message });
+      return response.status(401).json({ message: err.message });
     }
   }
 }

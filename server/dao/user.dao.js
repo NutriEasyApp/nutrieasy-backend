@@ -8,7 +8,8 @@ class UserDao {
   }
   async register({ email, username, password }) {
     return this.knex.getConnection(async conn => {
-      const data = await conn('users').insert({
+      const data = await conn('users').insert(
+        {
           username,
           password: hash(password),
           email,
