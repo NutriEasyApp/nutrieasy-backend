@@ -1,0 +1,7 @@
+.github/
+ddl_script/
+node_modules/
+coverage/
+.cache/
+public/
+logs/
