@@ -1,3 +1,4 @@
+const { differenceInDays, parseISO } = require('date-fns');
 const { HealthDao } = require('../../dao/health.dao');
 const { DietController } = require('../diet/diet.controller');
 
@@ -18,6 +19,7 @@ class HealthController {
         bodytype,
         objective,
         exercisetime,
+        meals,
       } = request.body;
 
       if (
@@ -29,7 +31,8 @@ class HealthController {
           birthdate &&
           bodytype &&
           objective &&
-          exercisetime
+          exercisetime &&
+          meals
         )
       ) {
         return response
@@ -42,7 +45,7 @@ class HealthController {
         genre,
         height,
         weight,
-        birthdate: '21',
+        birthdate,
         bodytype,
         objective,
         exercisetime,
@@ -58,10 +61,11 @@ class HealthController {
         genre,
         height,
         weight,
-        age: '21',
+        age: parseInt(differenceInDays(new Date(), parseISO(birthdate)) / 365),
         bodytype,
         objective,
         exercisetime,
+        meals,
       });
 
       if (!diet)

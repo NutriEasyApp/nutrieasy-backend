@@ -21,6 +21,7 @@ class DietDao {
     protein,
     lipids,
     water,
+    meals,
   }) {
     return this.knex.getConnection(async conn => {
       const result = await conn('proposed_diet').insert({
@@ -30,7 +31,7 @@ class DietDao {
         protein,
         lipids,
         water,
-        meals: 'null',
+        meals,
       });
       conn.destroy();
       return result;
