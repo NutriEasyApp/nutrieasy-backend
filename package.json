@@ -2,9 +2,13 @@
   "name": "nutrieasy-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "format": "prettier \"**/*.+(ts|js|tsx)\" --write"
   },
   "repository": {
     "type": "git",
@@ -19,11 +23,21 @@
   "homepage": "https://github.com/NutrIA-Artificial-Intelligence-App/nutrieasy-backend#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "date-fns": "^2.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "faker": "^5.4.0",
+    "helmet": "^4.4.1",
+    "jest": "^26.6.3",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.1",
     "pg": "^8.5.1",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "prettier": "2.2.1"
   }
 }

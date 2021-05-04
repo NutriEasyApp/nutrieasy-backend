@@ -1,8 +1,8 @@
 'use strict';
 
 require('dotenv').config({
-  silent: true
-})
+  silent: true,
+});
 
 const express = require('express');
 const server = require('./server');

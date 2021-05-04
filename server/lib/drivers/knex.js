@@ -11,11 +11,10 @@ class Knex {
       const conn = this.knex({
         client: 'pg',
         connection: this.cn,
-        pool: { min: 0, max: 10 }
+        pool: { min: 0, max: 10 },
       });
       return callback(conn);
-    }
-    catch (e) {
+    } catch (e) {
       return e;
     }
   }

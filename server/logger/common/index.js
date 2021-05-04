@@ -5,17 +5,23 @@ const fs = require('fs');
 const path = require('path');
 
 function getLogger(directory) {
-  const logDir = path.resolve(process.env.NUTRIEASY_LOGDIR || process.env.NUTRIEASY_LOGDIR, directory);
+  const logFolder = process.env.nutrieasy_logdir;
+  if (!fs.existsSync(logFolder)) {
+    fs.mkdirSync(logFolder);
+  }
+  const logDir = path.resolve(logFolder, directory);
 
-  if (!fs.existsSync(logDir)) fs.mkdirSync(logDir);
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+  }
 
   const logger = createLogger({
     format: format.combine(
       format.timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss'
+        format: 'YYYY-MM-DD HH:mm:ss',
       }),
       format.printf(info => {
-        info.label = info.label ? info.label + " " : "";
+        info.label = info.label ? info.label + ' ' : '';
         return `${info.timestamp} ${info.label}${info.level}: ${info.message}`;
       })
     ),
@@ -23,10 +29,10 @@ function getLogger(directory) {
       new transports.DailyRotateFile({
         filename: `${logDir}/${directory}-%DATE%-main.log`,
         datePattern: 'YYYY-MM-DD',
-        level: "debug"
-      })
-    ]
-  })
+        level: 'debug',
+      }),
+    ],
+  });
 
   return logger;
 }
