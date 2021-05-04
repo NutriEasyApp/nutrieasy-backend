@@ -90,7 +90,7 @@ class HealthController {
 
       return response.status(200).json(health);
     } catch (err) {
-      return response.status(404).send({ error: 404, message: err.message });
+      return response.status(404).send({ error: 404, message: 'The health was not found' });
     }
   }
 }

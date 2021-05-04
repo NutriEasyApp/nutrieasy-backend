@@ -4,10 +4,6 @@ const { UserDao } = require('../../dao/user.dao');
 const { sign } = require('../../shared/provider/jwt');
 const { compare } = require('../../shared/provider/encryption');
 
-// function _isRequired(field) {
-//   throw new Error(`This ${field} is required`);
-// }
-
 class AuthController {
   constructor() {
     this.dao = new UserDao();
@@ -20,20 +16,17 @@ class AuthController {
         throw new AppError({ message: 'Fields not provided', statusCode: 400 });
       }
 
-      const userExists = await this.dao.getUserByEmail({ email });
+      const userExists = await this.dao.getUserIdByEmail({ email });
 
-      {
-        if (userExists) {
-          throw new AppError({
-            message: 'User already registered',
-            statusCode: 400,
-          });
-        }
+      if (userExists) {
+        throw new AppError({
+          message: 'User already registered',
+          statusCode: 400,
+        });
       }
 
       const user = await this.dao.register({ email, username, password });
-
-      const token = await sign({ user: user.id });
+      const token = sign({ user: user.id });
 
       return response.status(201).send({
         token,
@@ -50,7 +43,7 @@ class AuthController {
         .toString()
         .split(':');
 
-      const user = await this.dao.getUser({ email });
+      const user = await this.dao.getUser({email});
 
       if (!user) {
         throw new AppError({
@@ -68,15 +61,14 @@ class AuthController {
         });
       }
 
-      const token = await sign({ user: user.id });
+      const token = sign({ user: user.id });
 
       return response.status(200).send({
         token,
       });
     } catch (err) {
-      return response
-        .status(err.statusCode)
-        .json({ message: err.message, statusCode: err.statusCode });
+      return response.status(401)
+        .json({ message: err.message });
     }
   }
 }

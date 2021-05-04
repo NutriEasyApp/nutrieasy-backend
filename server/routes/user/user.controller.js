@@ -8,7 +8,7 @@ class UserController {
   async getUser(request, response) {
     try {
       console.log(request.params.id);
-      const user = await this.daoUser.getUser(request.params);
+      const user = await this.daoUser.getUserUsernameAndEmail(request.params);
 
       if (!user)
         return response

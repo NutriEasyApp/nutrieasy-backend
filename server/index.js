@@ -1,5 +1,4 @@
 'use strict';
-const { StatusCode } = require('./http/statusCode/statusCode');
 const AppError = require('./http/errors/AppError');
 const logger = require('./logger/common')('api');
 
@@ -20,7 +19,7 @@ const configResponseObject = app => {
         request.body
       )} }`
     );
-    return response.status(StatusCode.Internal_Server_Error_500).json({
+    return response.status(500).json({
       status: 'error',
       message: 'Internal server error',
     });
@@ -37,10 +36,7 @@ const configureApp = app => {
   app.use('/nutrieasy/auth', auth());
 
   const authenticationMiddleware = require('./routes/middlewares/authentication.middleware');
-  //app.use(authenticationMiddleware);
-
-  //app.use(authorizationMiddleware);
-  //const authorizationMiddleware = require('./routes/middlewares/authorization.middleware');
+  app.use(authenticationMiddleware);
 
   app.use('/nutrieasy/coverage-report', express.static('public/lcov-report/'));
 
@@ -65,7 +61,7 @@ const configureApp = app => {
     );
 
     if ('OPTIONS' === req.method) {
-      res.send(StatusCode.OK_200, '');
+      res.send(200, '');
     } else {
       next();
     }
@@ -87,8 +83,8 @@ const initRoutes = app => {
   app.use('/nutrieasy/health', health());
   app.use('/nutrieasy/user', user());
 
-  const express = require('express');
-  app.use('/**', express.static('public/404.html'));
+  // const express = require('express');
+  // app.use('/**', express.static('public/404.html'));
 };
 
 const startApp = app => {

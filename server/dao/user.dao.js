@@ -8,12 +8,10 @@ class UserDao {
   }
   async register({ email, username, password }) {
     return this.knex.getConnection(async conn => {
-      const data = await conn('users').insert(
-        {
+      const data = await conn('users').insert({
           username,
           password: hash(password),
           email,
-          last_login: new Date(),
         },
         ['id']
       );
@@ -28,7 +26,7 @@ class UserDao {
         .select('id', 'password')
         .from('users')
         .where({
-          email,
+          email: email,
         })
         .first();
       conn.destroy();
@@ -36,7 +34,7 @@ class UserDao {
     });
   }
 
-  async getUserByEmail({ email }) {
+  async getUserIdByEmail({ email }) {
     return this.knex.getConnection(async conn => {
       const data = await conn
         .select('id')
@@ -64,7 +62,7 @@ class UserDao {
     });
   }
 
-  async getUser({ id }) {
+  async getUserUsernameAndEmail({ id }) {
     return this.knex.getConnection(async conn => {
       const data = await conn
         .select('username', 'email')

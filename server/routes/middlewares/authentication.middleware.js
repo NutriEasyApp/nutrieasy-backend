@@ -10,8 +10,7 @@ const authenticationMiddleware = async (request, response, next) => {
 
     const [, token] = request.headers.authorization.split(' ');
 
-    const payload = await verify(token);
-
+    const payload = verify(token);
     const userDao = new UserDao();
     const user = await userDao.getUserById({ id: payload.user });
 
