@@ -30,6 +30,7 @@ class AuthController {
 
       return response.status(201).send({
         token,
+        user: user.id,
       });
     } catch (err) {
       return response.status(400).json(err);
@@ -65,6 +66,7 @@ class AuthController {
 
       return response.status(200).send({
         token,
+        user: user.id,
       });
     } catch (err) {
       return response.status(401).json({ message: err.message });
