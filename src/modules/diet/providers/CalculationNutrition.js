@@ -7,7 +7,7 @@ class CalculationNutrition {
     bodytype,
     objective,
     exercisetime,
-    calorieOfbaseChores = 750,
+    calorieOfbaseChores = 400,
     calorieSpendForhour = 300,
     baseCalorie = 500,
   }) {
