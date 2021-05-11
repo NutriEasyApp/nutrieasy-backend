@@ -7,7 +7,7 @@ class CalculationNutrition {
     bodytype,
     objective,
     exercisetime,
-    calorieOfbaseChores = 750,
+    calorieOfbaseChores = 400,
     calorieSpendForhour = 300,
     baseCalorie = 500,
   }) {
@@ -27,7 +27,7 @@ class CalculationNutrition {
   }
 
   calculationBasal() {
-    if (this.genre === 'm')
+    if (this.genre === 'M')
       return (
         66.5 +
         5 * Number(this.height) +
