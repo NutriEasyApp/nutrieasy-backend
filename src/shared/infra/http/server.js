@@ -1,5 +1,5 @@
 'use strict';
-
+require('dotenv').config();
 const { AppError } = require('../../errors/AppError');
 const routes = require('./routes/index.js');
 const Logger = require('../../providers/logger')('server');
