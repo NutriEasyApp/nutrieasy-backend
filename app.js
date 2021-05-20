@@ -5,6 +5,6 @@ require('dotenv').config({
 });
 
 const express = require('express');
-const server = require('./server');
+const server = require('./src/shared/infra/http/server');
 
 server(express());
