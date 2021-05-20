@@ -43,7 +43,7 @@ class UpdateHealthService {
       objective,
       exercisetime,
     });
-    console.log(health);
+
     if (!health) throw new AppError('Input data was not found', 404);
 
     return health;

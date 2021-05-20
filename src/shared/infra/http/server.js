@@ -1,5 +1,7 @@
 'use strict';
 require('dotenv').config();
+require('../mongoose');
+
 const { AppError } = require('../../errors/AppError');
 const routes = require('./routes/index.js');
 const Logger = require('../../providers/logger')('server');
@@ -37,12 +39,6 @@ const configureApp = app => {
   app.use(express.json());
   app.use(helmet());
 
-  // const auth = require('./routes/auth');
-  // app.use('/nutrieasy/auth', auth());
-
-  // const authenticationMiddleware = require('./routes/middlewares/authentication.middleware');
-  // app.use(authenticationMiddleware);
-
   app.use('/nutrieasy/coverage-report', express.static('public/lcov-report/'));
 
   app.use('*', (req, res, next) => {
@@ -74,16 +70,6 @@ const configureApp = app => {
 const configSwagger = app => {};
 
 const initRoutes = app => {
-  //   const parameter = require('./routes/parameter');
-  //   const diet = require('./routes/diet');
-  //   const health = require('./routes/health');
-  //   const user = require('./routes/user');
-
-  //   app.use('/nutrieasy/parameter', parameter());
-  //   app.use('/nutrieasy/diet', diet());
-  //   app.use('/nutrieasy/health', health());
-  //   app.use('/nutrieasy/user', user());
-
   app.use('/nutrieasy', routes);
 };
 
