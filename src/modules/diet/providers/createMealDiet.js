@@ -4,6 +4,7 @@ class CreateMealDiet {
     this.protein = Math.round(diet.protein / diet.meals);
     this.lipids = Math.round(diet.lipids / diet.meals);
     this.water = Math.round(diet.water / diet.meals);
+    this.amountMeals = diet.meals;
   }
 
   breakfast() {
@@ -158,17 +159,22 @@ class CreateMealDiet {
       },
     };
   }
+
+  getMeals() {
+    const meals = {
+      lunchAndDinner: this.lunchAndDinner(),
+    };
+
+    if (this.amountMeals > 2) {
+      meals.breakfast = this.breakfast();
+    }
+
+    if (this.amountMeals > 3) {
+      meals.morningAndAfterSnack = this.morningAndAfterSnack();
+    }
+
+    return meals;
+  }
 }
 
 module.exports = { CreateMealDiet };
-
-const cafe = new CreateMealDiet({
-  calories: '3481',
-  carbohydrates: '218',
-  protein: '305',
-  lipids: '155',
-  water: '2800',
-  meals: '4',
-});
-
-console.log(cafe.lunchAndDinner());
