@@ -19,25 +19,25 @@ class CreateDietService {
     exercisetime,
     meals,
   }) {
-    const {
-      calories,
-      lipids,
-      carbohydrates,
-      water,
-      protein,
-    } = new CalculationNutrition({
-      genre,
-      height,
-      weight,
-      age,
-      bodytype,
-      objective,
-      exercisetime,
-    }).valuesNutritional();
-
     const dietExists = await this.dietRepository.getDiet({ id_user });
 
     if (!dietExists) {
+      const {
+        calories,
+        lipids,
+        carbohydrates,
+        water,
+        protein,
+      } = new CalculationNutrition({
+        genre,
+        height,
+        weight,
+        age,
+        bodytype,
+        objective,
+        exercisetime,
+      }).valuesNutritional();
+
       const diet = await this.dietRepository.createDiet({
         id_user,
         calories,
