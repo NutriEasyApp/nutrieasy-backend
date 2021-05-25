@@ -1,4 +1,5 @@
 const { GetDietService } = require('../../../services/GetDietService');
+const { CreateMealDiet } = require('../../../providers/createMealDiet');
 class DietController {
   async show(request, response) {
     try {
@@ -6,8 +7,9 @@ class DietController {
 
       const getDietService = new GetDietService();
       const diet = await getDietService.execute({ id_user });
+      const getMeals = CreateMealDiet(diet).getMeals();
 
-      return response.status(200).json(diet);
+      return response.status(200).json({ diet, getMeals });
     } catch (err) {
       return response
         .status(err.statusCode || 404)

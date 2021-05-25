@@ -12,6 +12,7 @@ const {
 const {
   CreateHistoryHealthAnalysisService,
 } = require('../../../services/CreateHistoryHealthAnalysisService');
+const { CreateMealDiet } = require('../../../../diet/providers/createMealDiet');
 
 class HealthController {
   async create(request, response) {
@@ -53,6 +54,8 @@ class HealthController {
       meals,
     });
 
+    const getMeals = CreateMealDiet(diet).getMeals();
+
     const createHistoryHealthAnalysisService = new CreateHistoryHealthAnalysisService();
     const history = await createHistoryHealthAnalysisService.execute({
       id_user,
@@ -60,7 +63,7 @@ class HealthController {
       exercisetime,
     });
 
-    return response.status(201).json({ health, diet, history });
+    return response.status(201).json({ health, diet, history, getMeals });
   }
 
   async show(request, response) {
