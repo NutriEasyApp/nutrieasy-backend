@@ -122,8 +122,8 @@ class CreateMealDiet {
     };
 
     const amountRice = this.carbohydrates / rice.carbohydrate;
-    lunchAndDinnerProt -= amountrice * rice.protein;
-    lunchAndDinnerLip -= amountrice * rice.lipid;
+    lunchAndDinnerProt -= amountRice * rice.protein;
+    lunchAndDinnerLip -= amountRice * rice.lipid;
 
     const grilledRump = {
       lipid: 10,

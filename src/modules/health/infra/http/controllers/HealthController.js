@@ -42,7 +42,7 @@ class HealthController {
     });
 
     const createDietService = new CreateDietService();
-    const diet = await createDietService.execute({
+    const { diet, getMeals } = await createDietService.execute({
       id_user,
       genre,
       height,
@@ -53,8 +53,6 @@ class HealthController {
       exercisetime,
       meals,
     });
-
-    const getMeals = new CreateMealDiet(diet).getMeals();
 
     const createHistoryHealthAnalysisService = new CreateHistoryHealthAnalysisService();
     const history = await createHistoryHealthAnalysisService.execute({
@@ -70,9 +68,9 @@ class HealthController {
     const { id_user } = request.params;
 
     const getHealthService = new GetHealthService();
-    const health = await getHealthService.execute({ id_user });
+    const { diet, getMeals } = await getHealthService.execute({ id_user });
 
-    return response.status(200).json(health);
+    return response.status(200).json({ diet, getMeals });
   }
 
   async getHistory(request, response) {
