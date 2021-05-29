@@ -54,7 +54,7 @@ class HealthController {
       meals,
     });
 
-    const getMeals = CreateMealDiet(diet).getMeals();
+    const getMeals = new CreateMealDiet(diet).getMeals();
 
     const createHistoryHealthAnalysisService = new CreateHistoryHealthAnalysisService();
     const history = await createHistoryHealthAnalysisService.execute({
