@@ -31,7 +31,8 @@ class CreateMealDiet {
       weightUnit: 50,
     };
 
-    const amountEgg = breakfastProt / egg.protein;
+    const amountEgg =
+      breakfastProt / egg.protein > 0 ? breakfastProt / egg.protein : 0;
     breakfastLip -= amountEgg * egg.lipid;
 
     const cashewNut = {
@@ -41,7 +42,8 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountCashewNut = breakfastLip / cashewNut.lipid;
+    const amountCashewNut =
+      breakfastLip / cashewNut.lipid > 0 ? breakfastLip / cashewNut.lipid : 0;
 
     return {
       portionCereal: {
@@ -61,7 +63,7 @@ class CreateMealDiet {
 
   morningAndAfterSnack() {
     let morningAndAfterSnackProt = this.protein;
-    let morningAndAfterSnackLip = lipids;
+    let morningAndAfterSnackLip = this.lipids;
 
     const bread = {
       lipid: 6,
@@ -82,7 +84,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountTuna = morningAndAfterSnackProt / tuna.protein;
+    const amountTuna =
+      morningAndAfterSnackProt / tuna.protein > 0
+        ? morningAndAfterSnackProt / tuna.protein
+        : 0;
     morningAndAfterSnackLip -= amountTuna * tuna.lipid;
 
     const mayonnaise = {
@@ -92,7 +97,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountMayonnaise = morningAndAfterSnackLip / mayonnaise.lipid;
+    const amountMayonnaise =
+      morningAndAfterSnackLip / mayonnaise.lipid > 0
+        ? morningAndAfterSnackLip / mayonnaise.lipid
+        : 0;
 
     return {
       portionBread: {
@@ -132,7 +140,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountGrilledRump = lunchAndDinnerProt / grilledRump.protein;
+    const amountGrilledRump =
+      lunchAndDinnerProt / grilledRump.protein > 0
+        ? lunchAndDinnerProt / grilledRump.protein
+        : 0;
     lunchAndDinnerLip -= amountGrilledRump * grilledRump.lipid;
 
     const chesse = {
@@ -142,7 +153,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountChesse = lunchAndDinnerLip / chesse.lipid;
+    const amountChesse =
+      lunchAndDinnerLip / chesse.lipid > 0
+        ? lunchAndDinnerLip / chesse.lipid
+        : 0;
 
     return {
       portionRice: {
