@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "postinstall": "link-module-alias",
     "start": "node app.js",
     "start:dev": "nodemon app.js",
     "test": "jest",
@@ -35,13 +34,13 @@
     "jest": "^26.6.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.1",
+    "module-alias": "^2.2.2",
     "mongoose": "^5.12.9",
     "pg": "^8.5.1",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
-    "link-module-alias": "^1.2.0",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1"
   },
