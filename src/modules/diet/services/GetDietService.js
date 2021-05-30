@@ -21,6 +21,14 @@ class GetDietService {
 
     return { diet, dietPerMeal };
   }
+
+  async simpleDiet({ id_user }) {
+    const diet = await this.dietRepository.getDiet({ id_user });
+
+    if (!diet) throw new AppError('The diet was not found', 404);
+
+    return diet;
+  }
 }
 
 module.exports = { GetDietService };
