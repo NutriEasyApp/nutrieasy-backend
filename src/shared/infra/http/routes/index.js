@@ -1,13 +1,13 @@
 const { Router } = require('express');
 
-const authRouter = require('../../../../modules/users/infra/http/routes/auth');
-const changePasswordRouter = require('../../../../modules/users/infra/http/routes/changePassword');
+const authRouter = require('@modules/users/infra/http/routes/auth');
+const changePasswordRouter = require('@modules/users/infra/http/routes/changePassword');
 
-const authenticationMiddleware = require('../middlewares/authentication.middleware');
+const authenticationMiddleware = require('@shared/infra/http/middlewares/authentication.middleware');
 
-const usersRouter = require('../../../../modules/users/infra/http/routes');
-const dietRouter = require('../../../../modules/diet/infra/http/routes');
-const healthRouter = require('../../../../modules/health/infra/http/routes');
+const usersRouter = require('@modules/users/infra/http/routes');
+const dietRouter = require('@modules/diet/infra/http/routes');
+const healthRouter = require('@modules/health/infra/http/routes');
 
 const routes = new Router();
 

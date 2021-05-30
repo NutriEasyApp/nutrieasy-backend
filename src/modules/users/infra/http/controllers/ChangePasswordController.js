@@ -1,6 +1,6 @@
 const {
   ChangePasswordService,
-} = require('../../../services/ChangePasswordService');
+} = require('@modules/users/services/ChangePasswordService');
 
 class ChangePasswordController {
   async change(request, response) {

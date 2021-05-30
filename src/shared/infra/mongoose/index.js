@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const { mongoConfig } = require('../../../config/mongoose');
+const { mongoConfig } = require('@config/mongoose');
 
 mongoose.Promise = global.Promise;
 mongoose

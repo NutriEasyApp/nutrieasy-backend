@@ -1,17 +1,20 @@
 const { differenceInDays, parseISO } = require('date-fns');
+
 const {
   CreateHealthService,
-} = require('../../../services/CreateHealthService');
-const { GetHealthService } = require('../../../services/GetHealthService');
+} = require('@modules/health/services/CreateHealthService');
+const {
+  GetHealthService,
+} = require('@modules/health/services/GetHealthService');
 const {
   GetHistoryHealthService,
-} = require('../../../services/GetHistoryHealthService');
+} = require('@modules/health/services/GetHistoryHealthService');
 const {
   CreateDietService,
-} = require('../../../../diet/services/CreateDietService');
+} = require('@modules/diet/services/CreateDietService');
 const {
   CreateHistoryHealthAnalysisService,
-} = require('../../../services/CreateHistoryHealthAnalysisService');
+} = require('@modules/health/services/CreateHistoryHealthAnalysisService');
 const { CreateMealDiet } = require('../../../../diet/providers/createMealDiet');
 
 class HealthController {
@@ -74,18 +77,12 @@ class HealthController {
   }
 
   async getHistory(request, response) {
-    // try {
     const { id_user } = request.params;
 
     const getHistoryHealthService = new GetHistoryHealthService();
     const history = await getHistoryHealthService.execute({ id_user });
 
     return response.status(200).json(history);
-    // } catch (err) {
-    // console.log(err);
-    // throw err;
-    // return response.status(404).json(err);
-    // }
   }
 }
 

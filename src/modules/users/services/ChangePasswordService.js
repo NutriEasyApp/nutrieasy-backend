@@ -1,6 +1,7 @@
-const { AppError } = require('../../../shared/errors/AppError');
+const { AppError } = require('@shared/errors/AppError');
 const { UserRepository } = require('../repositories/UsersRepository');
-const { compare } = require('../../../shared/providers/bcrypt');
+const { compare } = require('@shared/providers/bcrypt');
+
 class ChangePasswordService {
   constructor() {
     this.userRepository = new UserRepository();

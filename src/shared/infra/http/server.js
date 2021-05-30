@@ -6,11 +6,11 @@ const helmet = require('helmet');
 const cors = require('cors');
 const os = require('os');
 
-require('../mongoose');
+require('@shared/infra/mongoose');
 
-const { AppError } = require('../../errors/AppError');
+const { AppError } = require('@shared/errors/AppError');
 const routes = require('./routes/index.js');
-const Logger = require('../../providers/logger')('server');
+const Logger = require('@shared/providers/logger')('server');
 
 const app = express();
 app.use(express.json());

@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "postinstall": "link-module-alias",
     "start": "node src/shared/infra/http/server.js",
     "start:dev": "nodemon src/shared/infra/http/server.js",
     "test": "jest",
@@ -40,7 +41,13 @@
     "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
+    "link-module-alias": "^1.2.0",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1"
+  },
+  "_moduleAliases": {
+    "@shared": "src/shared",
+    "@modules": "src/modules",
+    "@config": "src/config"
   }
 }

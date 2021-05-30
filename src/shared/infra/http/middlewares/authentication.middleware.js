@@ -1,9 +1,8 @@
-const { AppError } = require('../../../errors/AppError');
-const { verify } = require('../../../providers/jwt');
+const { AppError } = require('@shared/errors/AppError');
+const { verify } = require('@shared/providers/jwt');
 const {
   UserRepository,
-} = require('../../../../modules/users/repositories/UsersRepository');
-
+} = require('@modules/users/repositories/UsersRepository');
 const authenticationMiddleware = async (request, response, next) => {
   try {
     if (!request.headers.authorization)

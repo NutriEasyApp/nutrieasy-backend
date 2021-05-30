@@ -1,5 +1,5 @@
-const Knex = require('../../../shared/infra/knex');
-const { hash } = require('../../../shared/providers/bcrypt');
+const Knex = require('@shared/infra/knex');
+const { hash } = require('@shared/providers/bcrypt');
 
 class UserRepository {
   constructor() {

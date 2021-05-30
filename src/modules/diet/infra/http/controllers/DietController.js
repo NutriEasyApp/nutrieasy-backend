@@ -1,8 +1,8 @@
-const { GetDietService } = require('../../../services/GetDietService');
-const { CreateMealDiet } = require('../../../providers/createMealDiet');
+const { GetDietService } = require('@modules/diet/services/GetDietService');
+const { CreateMealDiet } = require('@modules/diet/providers/createMealDiet');
+
 class DietController {
   async show(request, response) {
-    // try {
     const { id_user } = request.params;
 
     const getDietService = new GetDietService();
@@ -10,11 +10,6 @@ class DietController {
     const getMeals = new CreateMealDiet(diet.diet).getMeals();
 
     return response.status(200).json({ diet, getMeals });
-    // } catch (err) {
-    // return response
-    // .status(err.statusCode || 404)
-    // .json({ message: err.message });
-    // }
   }
 }
 
