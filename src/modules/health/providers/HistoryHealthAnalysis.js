@@ -1,4 +1,3 @@
-const { AppError } = require('../../../shared/errors/AppError');
 const {
   HistoryHealthModel,
 } = require('../infra/http/models/HistoryHealthModel');

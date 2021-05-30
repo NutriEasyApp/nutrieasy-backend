@@ -1,4 +1,4 @@
-const { AppError } = require('../../../shared/errors/AppError');
+const { AppError } = require('@shared/errors/AppError');
 const { UserRepository } = require('../repositories/UsersRepository');
 
 class GetUserService {

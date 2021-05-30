@@ -4,6 +4,7 @@ class CreateMealDiet {
     this.protein = Math.round(diet.protein / diet.meals);
     this.lipids = Math.round(diet.lipids / diet.meals);
     this.water = Math.round(diet.water / diet.meals);
+    this.amountMeals = diet.meals;
   }
 
   breakfast() {
@@ -22,16 +23,18 @@ class CreateMealDiet {
     breakfastProt -= amountCereal * cereal.protein;
     breakfastLip -= amountCereal * cereal.lipid;
 
-    const egg = {
-      lipid: 11,
-      carbohydrate: 1,
-      protein: 13,
+    const turkeyBreast = {
+      lipid: 2,
+      carbohydrate: 2,
+      protein: 17,
       grams: 100,
-      weightUnit: 50,
     };
 
-    const amountEgg = breakfastProt / egg.protein;
-    breakfastLip -= amountEgg * egg.lipid;
+    const amountTurkeyBreast =
+      breakfastProt / turkeyBreast.protein > 0
+        ? breakfastProt / turkeyBreast.protein
+        : 0;
+    breakfastLip -= amountTurkeyBreast * turkeyBreast.lipid;
 
     const cashewNut = {
       lipid: 44,
@@ -40,16 +43,17 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountCashewNut = breakfastLip / cashewNut.lipid;
+    const amountCashewNut =
+      breakfastLip / cashewNut.lipid > 0 ? breakfastLip / cashewNut.lipid : 0;
 
     return {
       portionCereal: {
         amount: Math.round((amountCereal * cereal.grams) / cereal.weightUnit),
         type: 'units',
       },
-      portionEgg: {
-        amount: Math.round((amountEgg * egg.grams) / egg.weightUnit),
-        type: 'units',
+      portionTurkeyBreast: {
+        amount: Math.round(amountTurkeyBreast * turkeyBreast.grams),
+        type: 'grams',
       },
       portionCashewNut: {
         amount: Math.round(amountCashewNut * cashewNut.grams),
@@ -60,7 +64,7 @@ class CreateMealDiet {
 
   morningAndAfterSnack() {
     let morningAndAfterSnackProt = this.protein;
-    let morningAndAfterSnackLip = lipids;
+    let morningAndAfterSnackLip = this.lipids;
 
     const bread = {
       lipid: 6,
@@ -81,7 +85,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountTuna = morningAndAfterSnackProt / tuna.protein;
+    const amountTuna =
+      morningAndAfterSnackProt / tuna.protein > 0
+        ? morningAndAfterSnackProt / tuna.protein
+        : 0;
     morningAndAfterSnackLip -= amountTuna * tuna.lipid;
 
     const mayonnaise = {
@@ -91,7 +98,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountMayonnaise = morningAndAfterSnackLip / mayonnaise.lipid;
+    const amountMayonnaise =
+      morningAndAfterSnackLip / mayonnaise.lipid > 0
+        ? morningAndAfterSnackLip / mayonnaise.lipid
+        : 0;
 
     return {
       portionBread: {
@@ -121,8 +131,8 @@ class CreateMealDiet {
     };
 
     const amountRice = this.carbohydrates / rice.carbohydrate;
-    lunchAndDinnerProt -= amountrice * rice.protein;
-    lunchAndDinnerLip -= amountrice * rice.lipid;
+    lunchAndDinnerProt -= amountRice * rice.protein;
+    lunchAndDinnerLip -= amountRice * rice.lipid;
 
     const grilledRump = {
       lipid: 10,
@@ -131,7 +141,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountGrilledRump = lunchAndDinnerProt / grilledRump.protein;
+    const amountGrilledRump =
+      lunchAndDinnerProt / grilledRump.protein > 0
+        ? lunchAndDinnerProt / grilledRump.protein
+        : 0;
     lunchAndDinnerLip -= amountGrilledRump * grilledRump.lipid;
 
     const chesse = {
@@ -141,7 +154,10 @@ class CreateMealDiet {
       grams: 100,
     };
 
-    const amountChesse = lunchAndDinnerLip / chesse.lipid;
+    const amountChesse =
+      lunchAndDinnerLip / chesse.lipid > 0
+        ? lunchAndDinnerLip / chesse.lipid
+        : 0;
 
     return {
       portionRice: {
@@ -158,17 +174,22 @@ class CreateMealDiet {
       },
     };
   }
+
+  getMeals() {
+    const meals = {
+      lunchAndDinner: this.lunchAndDinner(),
+    };
+
+    if (this.amountMeals > 2) {
+      meals.breakfast = this.breakfast();
+    }
+
+    if (this.amountMeals > 3) {
+      meals.morningAndAfterSnack = this.morningAndAfterSnack();
+    }
+
+    return meals;
+  }
 }
 
 module.exports = { CreateMealDiet };
-
-const cafe = new CreateMealDiet({
-  calories: '3481',
-  carbohydrates: '218',
-  protein: '305',
-  lipids: '155',
-  water: '2800',
-  meals: '4',
-});
-
-console.log(cafe.lunchAndDinner());

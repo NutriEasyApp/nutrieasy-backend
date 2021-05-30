@@ -1,7 +1,6 @@
-const { sign } = require('../../../shared/providers/jwt');
-const { compare } = require('../../../shared/providers/bcrypt');
-
-const { AppError } = require('../../../shared/errors/AppError');
+const { AppError } = require('@shared/errors/AppError');
+const { compare } = require('@shared/providers/bcrypt');
+const { sign } = require('@shared/providers/jwt');
 const { UserRepository } = require('../repositories/UsersRepository');
 
 class LoginUserService {

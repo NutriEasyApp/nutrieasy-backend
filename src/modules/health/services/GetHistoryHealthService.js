@@ -1,4 +1,4 @@
-const { AppError } = require('../../../shared/errors/AppError');
+const { AppError } = require('@shared/errors/AppError');
 const { HistoryHealthAnalysis } = require('../providers/HistoryHealthAnalysis');
 
 class GetHistoryHealthService {

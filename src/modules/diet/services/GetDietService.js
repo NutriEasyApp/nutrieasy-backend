@@ -1,4 +1,4 @@
-const { AppError } = require('../../../shared/errors/AppError');
+const { AppError } = require('@shared/errors/AppError');
 const { DietRepository } = require('../repositories/DietRepository');
 
 class GetDietService {
@@ -20,6 +20,14 @@ class GetDietService {
     };
 
     return { diet, dietPerMeal };
+  }
+
+  async simpleDiet({ id_user }) {
+    const diet = await this.dietRepository.getDiet({ id_user });
+
+    if (!diet) throw new AppError('The diet was not found', 404);
+
+    return diet;
   }
 }
 
