@@ -35,6 +35,20 @@ class UserRepository {
     });
   }
 
+  async getUserPasswordById({ id }) {
+    return this.knex.getConnection(async conn => {
+      const data = await conn
+        .select('id', 'password')
+        .from('users')
+        .where({
+          id,
+        })
+        .first();
+      conn.destroy();
+      return data;
+    });
+  }
+
   async getUserIdByEmail({ email }) {
     return this.knex.getConnection(async conn => {
       const data = await conn
@@ -68,6 +82,20 @@ class UserRepository {
       const { password, ...data } = await conn('users').where({ id }).first();
       conn.destroy();
       return data;
+    });
+  }
+
+  async updateUserPassword({ id, newPassword }) {
+    return this.knex.getConnection(async conn => {
+      const result = await conn('users')
+        .where({ id })
+        .update({
+          password: hash(newPassword),
+        });
+
+      conn.destroy();
+      console.log(result);
+      return result;
     });
   }
 }
