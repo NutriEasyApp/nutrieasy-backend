@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const { config } = require('../../../config/auth');
+const { config } = require('@config/auth');
 
 const sign = payload => jwt.sign(payload, config.secret, config.options);
 

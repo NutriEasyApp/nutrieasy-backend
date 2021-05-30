@@ -1,5 +1,5 @@
-const Knex = require('../../../shared/infra/knex');
-const { hash } = require('../../../shared/providers/bcrypt');
+const Knex = require('@shared/infra/knex');
+const { hash } = require('@shared/providers/bcrypt');
 
 class UserRepository {
   constructor() {
@@ -28,6 +28,20 @@ class UserRepository {
         .from('users')
         .where({
           email: email,
+        })
+        .first();
+      conn.destroy();
+      return data;
+    });
+  }
+
+  async getUserPasswordById({ id }) {
+    return this.knex.getConnection(async conn => {
+      const data = await conn
+        .select('id', 'password')
+        .from('users')
+        .where({
+          id,
         })
         .first();
       conn.destroy();
@@ -68,6 +82,20 @@ class UserRepository {
       const { password, ...data } = await conn('users').where({ id }).first();
       conn.destroy();
       return data;
+    });
+  }
+
+  async updateUserPassword({ id, newPassword }) {
+    return this.knex.getConnection(async conn => {
+      const result = await conn('users')
+        .where({ id })
+        .update({
+          password: hash(newPassword),
+        });
+
+      conn.destroy();
+      console.log(result);
+      return result;
     });
   }
 }

@@ -1,4 +1,4 @@
-const Knex = require('../../../shared/infra/knex');
+const Knex = require('@shared/infra/knex');
 
 class HealthRepository {
   constructor() {

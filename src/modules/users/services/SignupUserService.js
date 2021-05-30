@@ -1,5 +1,5 @@
-const { sign } = require('../../../shared/providers/jwt');
-const { AppError } = require('../../../shared/errors/AppError');
+const { sign } = require('@shared/providers/jwt');
+const { AppError } = require('@shared/errors/AppError');
 const { UserRepository } = require('../repositories/UsersRepository');
 
 class SignupUserService {
