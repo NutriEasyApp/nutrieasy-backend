@@ -17,27 +17,30 @@ class ChangePasswordService {
       throw new AppError('User was not found', 400);
     }
 
+    const storedUserPassword = userExists.password;
+
+    const isEqual = compare(currentpassword, storedUserPassword);
+
+    if (!isEqual) {
+      throw new AppError(
+        'Your current password need to be equal to previous registered password',
+        400
+      );
+    }
+
     if (
       currentpassword === newpassword &&
       currentpassword === repeatnewpassword
     ) {
       throw new AppError(
-        'Your new password can not be equal to previous password',
+        'Your current password can not be equal to new password or repeat new password',
         400
       );
     }
 
     if (newpassword !== repeatnewpassword) {
-      throw new AppError('New password and Repeat new password does not match');
-    }
-
-    const userPassword = userExists.password;
-
-    const isValid = compare(newpassword, userPassword);
-
-    if (isValid) {
       throw new AppError(
-        'Your new password can not be equal to previous password',
+        'New password and Repeat new password does not match',
         400
       );
     }
