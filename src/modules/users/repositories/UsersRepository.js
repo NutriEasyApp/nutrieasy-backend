@@ -94,7 +94,6 @@ class UserRepository {
         });
 
       conn.destroy();
-      console.log(result);
       return result;
     });
   }
