@@ -12,29 +12,26 @@ class CreateMealDiet {
     let breakfastLip = this.lipids;
 
     const cereal = {
-      lipid: 1,
-      carbohydrate: 87,
-      protein: 6,
+      lipid: 7,
+      carbohydrate: 68,
+      protein: 13,
       grams: 100,
-      weightUnit: 30,
     };
 
     const amountCereal = this.carbohydrates / cereal.carbohydrate;
     breakfastProt -= amountCereal * cereal.protein;
     breakfastLip -= amountCereal * cereal.lipid;
 
-    const turkeyBreast = {
-      lipid: 2,
-      carbohydrate: 2,
-      protein: 17,
+    const yogurt = {
+      lipid: 1,
+      carbohydrate: 4,
+      protein: 10,
       grams: 100,
     };
 
-    const amountTurkeyBreast =
-      breakfastProt / turkeyBreast.protein > 0
-        ? breakfastProt / turkeyBreast.protein
-        : 0;
-    breakfastLip -= amountTurkeyBreast * turkeyBreast.lipid;
+    const amountYogurt =
+      breakfastProt / yogurt.protein > 0 ? breakfastProt / yogurt.protein : 0;
+    breakfastLip -= amountYogurt * yogurt.lipid;
 
     const cashewNut = {
       lipid: 44,
@@ -48,12 +45,12 @@ class CreateMealDiet {
 
     return {
       portionCereal: {
-        amount: Math.round((amountCereal * cereal.grams) / cereal.weightUnit),
-        type: 'units',
-      },
-      portionTurkeyBreast: {
-        amount: Math.round(amountTurkeyBreast * turkeyBreast.grams),
+        amount: Math.round(amountCereal * cereal.grams),
         type: 'grams',
+      },
+      portionYogurt: {
+        amount: Math.round(amountYogurt * yogurt.grams),
+        type: 'ml',
       },
       portionCashewNut: {
         amount: Math.round(amountCashewNut * cashewNut.grams),
