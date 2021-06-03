@@ -42,6 +42,7 @@ class UpdateHealthService {
       bodytype,
       objective,
       exercisetime,
+      meals,
     });
 
     if (!health) throw new AppError('Input data was not found', 404);

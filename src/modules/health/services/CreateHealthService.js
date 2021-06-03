@@ -46,6 +46,7 @@ class CreateHealthService {
         bodytype,
         objective,
         exercisetime,
+        meals,
       });
       return health;
     }

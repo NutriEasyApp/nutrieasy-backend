@@ -97,6 +97,17 @@ class UserRepository {
       return result;
     });
   }
+
+  async updateUserToken({ id, pushNotificationToken }) {
+    return this.knex.getConnection(async conn => {
+      const result = await conn('users').where({ id }).update({
+        token: pushNotificationToken,
+      });
+
+      conn.destroy();
+      return result;
+    });
+  }
 }
 
 module.exports = { UserRepository };
