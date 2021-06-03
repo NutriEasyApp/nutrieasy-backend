@@ -20,7 +20,7 @@ class GetHistoryHealthService {
     ) {
       limitedHistory.push(user.history[i]);
     }
-    user.history = limitedHistory;
+    user.history = limitedHistory.reverse();
     return user;
   }
 }

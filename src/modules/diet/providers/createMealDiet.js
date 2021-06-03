@@ -132,7 +132,7 @@ class CreateMealDiet {
     lunchAndDinnerLip -= amountRice * rice.lipid;
 
     const grilledRump = {
-      lipid: 11,
+      lipid: 9,
       carbohydrate: 0,
       protein: 32,
       grams: 100,
