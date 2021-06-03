@@ -10,6 +10,17 @@ class GetHistoryHealthService {
 
     if (!user) throw new AppError('The user was not found', 404);
 
+    const historylength = user.history.length - 1;
+    const limitedHistory = [];
+    const intervalDisplayHistoryData = 4;
+    for (
+      let i = historylength;
+      i > historylength - intervalDisplayHistoryData;
+      i--
+    ) {
+      limitedHistory.push(user.history[i]);
+    }
+    user.history = limitedHistory;
     return user;
   }
 }
