@@ -22,6 +22,7 @@ class HealthRepository {
     bodytype,
     objective,
     exercisetime,
+    meals,
   }) {
     return this.knex.getConnection(async conn => {
       const result = await conn('health_analysis').insert({
@@ -33,6 +34,7 @@ class HealthRepository {
         bodytype,
         objective,
         exercisetime,
+        meals,
       });
       conn.destroy();
 
@@ -49,6 +51,7 @@ class HealthRepository {
     bodytype,
     objective,
     exercisetime,
+    meals,
   }) {
     return this.knex.getConnection(async conn => {
       const result = await conn('health_analysis').where({ id_user }).update({
@@ -59,6 +62,7 @@ class HealthRepository {
         bodytype,
         objective,
         exercisetime,
+        meals,
       });
 
       conn.destroy();
