@@ -13,14 +13,16 @@ class GetHistoryHealthService {
     const historylength = user.history.length - 1;
     const limitedHistory = [];
     const intervalDisplayHistoryData = 4;
-    for (
-      let i = historylength;
-      i > historylength - intervalDisplayHistoryData;
-      i--
-    ) {
-      limitedHistory.push(user.history[i]);
+    if (historylength >= intervalDisplayHistoryData) {
+      for (
+        let i = historylength;
+        i > historylength - intervalDisplayHistoryData;
+        i--
+      ) {
+        limitedHistory.push(user.history[i]);
+      }
+      user.history = limitedHistory.reverse();
     }
-    user.history = limitedHistory.reverse();
     return user;
   }
 }
