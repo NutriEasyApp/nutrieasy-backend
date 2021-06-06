@@ -84,7 +84,15 @@ class UserRepository {
       return data;
     });
   }
-
+  async getUserByEmail({ email }) {
+    return this.knex.getConnection(async conn => {
+      const { password, ...data } = await conn('users')
+        .where({ email })
+        .first();
+      conn.destroy();
+      return data;
+    });
+  }
   async updateUserPassword({ id, newPassword }) {
     return this.knex.getConnection(async conn => {
       const result = await conn('users')
@@ -104,6 +112,16 @@ class UserRepository {
         token: pushNotificationToken,
       });
 
+      conn.destroy();
+      return result;
+    });
+  }
+
+  async registerUserTempCode({ email, code }) {
+    return this.knex.getConnection(async conn => {
+      const result = await conn('users').where({ email }).update({
+        temporary_code: code,
+      });
       conn.destroy();
       return result;
     });
