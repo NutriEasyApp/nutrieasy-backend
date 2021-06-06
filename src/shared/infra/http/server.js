@@ -17,13 +17,12 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-app.use('/nutrieasy/coverage-report', express.static('public/lcov-report/'));
-
 app.use('*', (req, res, next) => {
   Logger.info(`{ method: ${req.method}, url: ${req.url} }`);
   next();
 });
 
+app.use('/nutrieasy/coverage-report', express.static('public/lcov-report/'));
 app.use('/nutrieasy', routes);
 
 app.use((err, request, response, _) => {
