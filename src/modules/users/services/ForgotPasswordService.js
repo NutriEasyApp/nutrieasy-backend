@@ -19,7 +19,6 @@ class ForgotPasswordService {
       email,
       code,
     });
-    console.log(userExists.token);
     await PushNotification({
       pushNotificationTokens: [userExists.token],
       title: `Aqui está seu código temporário`,
