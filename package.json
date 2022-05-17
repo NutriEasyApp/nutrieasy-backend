@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/NutrIA-Artificial-Intelligence-App/nutrieasy-backend#readme",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "date-fns": "^2.21.1",
